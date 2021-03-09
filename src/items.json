@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Keyboard",
+    "price": 25,
+    "linesPerSecond": 1
+  },
+  {
+    "name": "Intern",
+    "price": 50,
+    "linesPerSecond": 10
+  },
+  {
+    "name": "Raspberry pi",
+    "price": 500,
+    "linesPerSecond": 25
+  },
+  {
+    "name": "Junior dev",
+    "price": 4000,
+    "linesPerSecond": 40
+  }
+]
