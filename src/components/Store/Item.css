@@ -1,0 +1,31 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  user-select: none;
+}
+
+.item:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.item > .title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.item > .title > h6 {
+  margin-bottom: 0;
+}
+
+.item > .title > img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.8rem;
+}
