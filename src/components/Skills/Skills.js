@@ -1,10 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './Skills.css'
-import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import { Section } from './Section'
 
-export const Skills = ({ skills }) => {
+export const Skills = () => {
+  const skills = useSelector(state => state.game.skills)
+
   return (
     <>
       <Typography variant="h5">Skills</Typography>
@@ -19,8 +21,4 @@ export const Skills = ({ skills }) => {
       </div>
     </>
   )
-}
-
-Skills.propTypes = {
-  skills: PropTypes.objectOf(PropTypes.number).isRequired,
 }

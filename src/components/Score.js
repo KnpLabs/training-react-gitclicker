@@ -1,14 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-export const Score = ({ lines, linesPerSecond }) => (
-  <>
-    <h3 style={{fontFamily: 'Orbitron'}}>{parseInt(lines)} lines</h3>
-    <small>per second: {linesPerSecond}</small>
-  </>
-)
+export const Score = () => {
+  const lines = useSelector(state => parseInt(state.game.lines))
+  const linesPerSecond = useSelector(state => parseInt(state.game.linesPerMillisecond * 10))
 
-Score.propTypes = {
-  lines: PropTypes.number.isRequired,
-  linesPerSecond: PropTypes.number.isRequired,
+  return (
+    <>
+      <h3 style={{fontFamily: 'Orbitron'}}>{lines} lines</h3>
+      <small>per second: {linesPerSecond}</small>
+    </>
+  )
 }

@@ -1,11 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import './Store.css'
+import { buyItem } from 'modules/game'
 import { Item } from './Item'
 import items from '../../items'
 
-export const Store = ({ lines, onBuy }) => {
+export const Store = () => {
+  const dispatch = useDispatch()
+  const lines = useSelector(state => state.game.lines)
+
+  const handleBuy = item => {
+    dispatch(buyItem(item))
+  }
+
   return (
     <div className="store">
       <Typography variant="h5">Store</Typography>
@@ -15,14 +23,9 @@ export const Store = ({ lines, onBuy }) => {
           key={key} 
           item={item}
           lines={lines}
-          onBuy={onBuy}
+          onBuy={handleBuy}
         />
       )}
     </div>
   )
-}
-
-Store.propTypes = {
-  lines: PropTypes.number.isRequired,
-  onBuy: PropTypes.func.isRequired,
 }

@@ -36,7 +36,7 @@ export const Home = () => {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <Link to="/gitclicker">
+                  <Link to="/game">
                     <Button variant="contained" color="primary">
                       Play
                     </Button>

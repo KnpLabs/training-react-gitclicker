@@ -8,5 +8,6 @@
   "paths": {
     "assets": ["./assets/*"],
     "components": ["./components/*"]
+    "modules": ["./modules/*"]
   }
 }
