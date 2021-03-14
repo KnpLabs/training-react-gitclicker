@@ -13,6 +13,7 @@ export const Gitcoin = () => {
     <button
       className="gitcoin"
       onClick={handleClick}
+      aria-label="Gitcoin"
     >
       <img src={githubIcon} alt="Gitcoin" />
     </button>

@@ -1,7 +1,7 @@
 // Actions
-const CLICK = 'game::CLICK'
-const BUY_ITEM = 'game::BUY_ITEM'
-const LOOP = 'game::LOOP'
+export const CLICK = 'game::CLICK'
+export const BUY_ITEM = 'game::BUY_ITEM'
+export const LOOP = 'game::LOOP'
 
 // Action creators
 export const click = () => ({
@@ -20,7 +20,7 @@ export const loop = () => ({
 const INITIAL_STATE = {
   lines: 0,
   linesPerMillisecond: 0,
-  skills: []
+  skills: {}
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {

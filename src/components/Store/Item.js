@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import numberFormat from 'utils/numberFormat'
 import './Item.css'
 
 export const Item = ({ item, lines, onBuy }) => {
@@ -20,15 +21,16 @@ export const Item = ({ item, lines, onBuy }) => {
         <img src={item.icon} alt={item.name} />
         <div>
           <Typography variant="subtitle1">{item.name}</Typography>
-          <small>{linePerSecond} lines per second</small>
+          <small>{numberFormat(linePerSecond)} lines per second</small>
         </div>
       </div>
       <Button 
+        name="buy"
         variant="contained"
         color="secondary"
         disabled={!canBuy(item)}
       >
-        {item.price}
+        {numberFormat(item.price)}
       </Button>
     </div>
   )

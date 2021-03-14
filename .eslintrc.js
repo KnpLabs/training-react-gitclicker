@@ -4,10 +4,12 @@ module.exports = {
     'node': true,
     'es6': true,
     'browser': true,
+    'jest/globals': true,
   },
   'plugins': [
     'react',
     'react-hooks',
+    'jest',
   ],
   'parser': 'babel-eslint',
   'extends': [
