@@ -20,18 +20,32 @@ export const loop = () => ({
 })
 
 // Side Effects
-export const start = () => dispatch => {
+export const start = () => async dispatch => {
   const loadedGame = JSON.parse(localStorage.getItem('game'))
+  const interval = setInterval(() => dispatch(loop()), 100)
+
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shop/items`)
+  const items = await response.json()
 
   return dispatch({
     type: START,
-    loadedGame: loadedGame ?? {}
+    interval,
+    items,
+    loadedGame: loadedGame ?? {},
   })
 }
 
 export const stop = () => (dispatch, getState) => {
-  const serializedGame = JSON.stringify(getState().game)
+  const { interval, ...game } = getState().game
+
+  const serializedGame = JSON.stringify({
+    lines: game.lines,
+    linesPerMillisecond: game.linesPerMillisecond,
+    skills: game.skills
+  })
   localStorage.setItem('game', serializedGame)
+
+  clearInterval(interval)
 
   return dispatch({
     type: STOP
@@ -41,7 +55,9 @@ export const stop = () => (dispatch, getState) => {
 const INITIAL_STATE = {
   lines: 0,
   linesPerMillisecond: 0,
-  skills: {}
+  skills: {},
+  interval: null,
+  items: []
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -71,9 +87,14 @@ export const reducer = (state = INITIAL_STATE, action) => {
   }
 
   if (type === START) {
-    const { loadedGame } = action
+    const { loadedGame, interval, items } = action
 
-    return { ...state, ...loadedGame }
+    return { 
+      ...state,
+      ...loadedGame,
+      interval,
+      items
+    }
   }
 
   return state

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import numberFormat from 'utils/numberFormat'
+import getItemIcon from 'utils/getItemIcon'
 import './Item.css'
 
 export const Item = ({ item, lines, onBuy }) => {
@@ -18,7 +19,7 @@ export const Item = ({ item, lines, onBuy }) => {
       onClick={() => canBuy(item) && onBuy(item)}
     >
       <div className="title">
-        <img src={item.icon} alt={item.name} />
+        <img src={getItemIcon(item)} alt={item.name} />
         <div>
           <Typography variant="subtitle1">{item.name}</Typography>
           <small>{numberFormat(linePerSecond)} lines per second</small>

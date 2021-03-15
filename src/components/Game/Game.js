@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Paper from '@material-ui/core/Paper'
 import './Game.css'
-import { loop, start, stop } from 'modules/game'
+import { start, stop } from 'modules/game'
 import { Navbar } from 'components/layout/Navbar'
 import { Gitcoin } from 'components/Gitcoin'
 import { Score } from 'components/Score'
@@ -15,12 +15,7 @@ export const Game = () => {
   useEffect(() => {
     dispatch(start())
 
-    const interval = setInterval(() => {
-      dispatch(loop())
-    }, 100)
-
     return () => {
-      clearInterval(interval)
       dispatch(stop())
     }
   })

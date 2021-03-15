@@ -11,7 +11,14 @@ describe('Game', () => {
       game: { 
         lines: 6,
         linesPerMillisecond: 2,
-        skills: {}
+        skills: {},
+        items: [
+          { name: 'Bash', price: 10, multiplier: 0.1 },
+          { name: 'Git', price: 100, multiplier: 1.2 },
+          { name: 'Javascript', price: 10000, multiplier: 14.0 },
+          { name: 'React', price: 50000, multiplier: 75.0 },
+          { name: 'Vim', price: 1000000, multiplier: 1000.0 },
+        ]
       }
     }
 

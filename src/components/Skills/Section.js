@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
-import items from '../../items' 
+import getItemIcon from 'utils/getItemIcon' 
 
 export const Section = ({ itemName, number }) => {
   const repeat = Array.from([ ...Array(number).keys() ])
+  const items = useSelector(state => state.game.items)
   const item = items.find(element => element.name === itemName)
 
   return (
@@ -14,7 +16,7 @@ export const Section = ({ itemName, number }) => {
         {repeat.map(key =>
           <img
             key={key}
-            src={item.icon}
+            src={getItemIcon(item)}
             alt={item.name}
           />
         )}

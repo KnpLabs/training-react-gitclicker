@@ -4,12 +4,16 @@ import { render, screen } from '@testing-library/react'
 import { Skills } from './Skills'
 import configureStore from '../../configureStore'
 
-
 describe('Store', () => {
   it('Renders correctly', () => {
     const initialState = {
       game: { 
-        skills: { 'Bash': 2, 'Git': 3, 'Javascript': 4 } 
+        skills: { 'Bash': 2, 'Git': 3, 'Javascript': 4 },
+        items: [
+          { name: 'Bash' },
+          { name: 'Git' },
+          { name: 'Javascript' },
+        ]
       }
     }
 

@@ -5,7 +5,7 @@ describe('numberFormat', () => {
     const number = 234
     expect(numberFormat(number)).toBe('234')
   })
-  
+
   it('format numbers bellow 1.000.000', () => {
     const number = 123234
     expect(numberFormat(number)).toBe('123.234')

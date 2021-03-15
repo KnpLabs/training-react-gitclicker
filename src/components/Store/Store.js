@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography'
 import './Store.css'
 import { buyItem } from 'modules/game'
 import { Item } from './Item'
-import items from '../../items'
 
 export const Store = () => {
   const dispatch = useDispatch()
   const lines = useSelector(state => state.game.lines)
+  const items = useSelector(state => state.game.items)
 
   const handleBuy = item => {
     dispatch(buyItem(item))
