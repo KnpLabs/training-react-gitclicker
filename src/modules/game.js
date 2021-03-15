@@ -2,6 +2,8 @@
 export const CLICK = 'game::CLICK'
 export const BUY_ITEM = 'game::BUY_ITEM'
 export const LOOP = 'game::LOOP'
+export const START = 'game::START'
+export const STOP = 'game::STOP'
 
 // Action creators
 export const click = () => ({
@@ -16,6 +18,25 @@ export const buyItem = item => ({
 export const loop = () => ({
   type: LOOP
 })
+
+// Side Effects
+export const start = () => dispatch => {
+  const loadedGame = JSON.parse(localStorage.getItem('game'))
+
+  return dispatch({
+    type: START,
+    loadedGame: loadedGame ?? {}
+  })
+}
+
+export const stop = () => (dispatch, getState) => {
+  const serializedGame = JSON.stringify(getState().game)
+  localStorage.setItem('game', serializedGame)
+
+  return dispatch({
+    type: STOP
+  })
+}
 
 const INITIAL_STATE = {
   lines: 0,
@@ -47,6 +68,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
         [name]: (skills[name] || 0) + 1
       }
     }
+  }
+
+  if (type === START) {
+    const { loadedGame } = action
+
+    return { ...state, ...loadedGame }
   }
 
   return state
