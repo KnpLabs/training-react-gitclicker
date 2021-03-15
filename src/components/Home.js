@@ -43,9 +43,11 @@ export const Home = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
-                  </Button>
+                  <Link to="/rules">
+                    <Button variant="outlined" color="primary">
+                      Rules
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
             </div>

@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import './App.css'
 import { Game } from './Game'
 import { Home } from './Home'
+import { Rules } from './Rules'
 import configureStore from '../configureStore'
 
 const store = configureStore()
@@ -24,6 +25,9 @@ export const App = () => {
           </Route>
           <Route path="/game">
             <Game />
+          </Route>
+          <Route path="/rules">
+            <Rules />
           </Route>
         </Switch>
       </Router>
