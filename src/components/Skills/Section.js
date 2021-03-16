@@ -8,6 +8,8 @@ export const Section = ({ itemName, number }) => {
   const repeat = Array.from([ ...Array(number).keys() ])
   const items = useSelector(state => state.game.items)
   const item = items.find(element => element.name === itemName)
+  
+  if (!item) return null
 
   return (
     <div className="section">

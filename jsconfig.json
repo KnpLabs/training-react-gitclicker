@@ -9,6 +9,7 @@
     "assets": ["./assets/*"],
     "components": ["./components/*"],
     "modules": ["./modules/*"],
-    "utils": ["./utils/*"]
+    "utils": ["./utils/*"],
+    "validators": ["./validators/*"]
   }
 }
