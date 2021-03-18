@@ -1,9 +1,38 @@
 import React from 'react'
+import { rest } from 'msw'
+import { setupServer } from 'msw/node'
 import { Game } from './Game'
 import { Provider } from 'react-redux'
 import { MemoryRouter as Router } from 'react-router-dom'
 import { render, screen, waitFor } from '@testing-library/react'
 import configureStore from '../../configureStore'
+
+const server = setupServer(
+  rest.get(`${process.env.REACT_APP_API_URL}/api/shop/items`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          'id': 1,
+          'name': 'Bash',
+          'price': 10,
+          'multiplier': 0.1
+        },
+        {
+          'id': 2,
+          'name': 'React',
+          'price': 100,
+          'multiplier': 1.2
+        }
+      ])
+    )
+  })
+)
+
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
+
 
 describe('Game', () => {
   it('it renders correctly', async () => {
@@ -12,13 +41,7 @@ describe('Game', () => {
         lines: 6,
         linesPerMillisecond: 2,
         skills: {},
-        items: [
-          { name: 'Bash', price: 10, multiplier: 0.1 },
-          { name: 'Git', price: 100, multiplier: 1.2 },
-          { name: 'Javascript', price: 10000, multiplier: 14.0 },
-          { name: 'React', price: 50000, multiplier: 75.0 },
-          { name: 'Vim', price: 1000000, multiplier: 1000.0 },
-        ]
+        items: []
       }
     }
 
@@ -41,6 +64,13 @@ describe('Game', () => {
     )
     await waitFor(
       () => expect(screen.getByText(/10 lines/)).toBeInTheDocument(),
+      { timeout: 150 }
+    )
+    await waitFor(
+      () => {
+        expect(screen.getByText(/Bash/)).toBeInTheDocument()
+        expect(screen.getByText(/React/)).toBeInTheDocument()
+      },
       { timeout: 150 }
     )
   })
