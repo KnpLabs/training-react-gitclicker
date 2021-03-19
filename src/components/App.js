@@ -10,6 +10,7 @@ import './App.css'
 import { Game } from './Game'
 import { Home } from './Home'
 import { Rules } from './Rules'
+import { Button } from './atoms/Button'
 import configureStore from '../configureStore'
 
 const store = configureStore()

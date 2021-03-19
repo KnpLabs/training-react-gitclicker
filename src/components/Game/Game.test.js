@@ -33,7 +33,6 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-
 describe('Game', () => {
   it('it renders correctly', async () => {
     const initialState = {
