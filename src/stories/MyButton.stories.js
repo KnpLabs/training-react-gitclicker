@@ -4,7 +4,10 @@ import { Button } from 'components/atoms/Button'
 
 export default {
   title: 'Atoms/Button',
-  component: Button
+  component: Button,
+  argTypes: {
+    onClick: { action: 'click' }
+  }
 }
 
 const Template = (args) => <Button {...args} />

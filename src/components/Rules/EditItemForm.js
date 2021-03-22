@@ -34,7 +34,6 @@ export const EditItemForm = () => {
       onSubmit={onSubmit}
       validate={validateItem}
       initialValues={item}
-      subscription={{ touched: true }}
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>

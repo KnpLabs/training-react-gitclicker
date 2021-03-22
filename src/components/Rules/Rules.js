@@ -16,7 +16,7 @@ import { EditItemForm } from './EditItemForm'
 const useStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(8, 0, 6),
-  },  
+  },
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),

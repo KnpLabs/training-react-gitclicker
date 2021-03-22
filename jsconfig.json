@@ -6,6 +6,7 @@
     "src"
   ],
   "paths": {
+    "atoms": ["./atoms/*"],
     "assets": ["./assets/*"],
     "components": ["./components/*"],
     "modules": ["./modules/*"],
