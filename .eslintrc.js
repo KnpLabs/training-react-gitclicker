@@ -5,11 +5,14 @@ module.exports = {
     'es6': true,
     'browser': true,
   },
+  "parserOptions": {
+    "ecmaVersion": 'latest',
+    "sourceType": 'module',
+  },
   'plugins': [
     'react',
     'react-hooks',
   ],
-  'parser': 'babel-eslint',
   'extends': [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -27,4 +30,3 @@ module.exports = {
     },
   }
 }
-
