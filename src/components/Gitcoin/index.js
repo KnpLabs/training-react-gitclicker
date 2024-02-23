@@ -1,1 +1,0 @@
-export { Gitcoin } from './Gitcoin'
