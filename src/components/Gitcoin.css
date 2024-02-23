@@ -1,0 +1,36 @@
+.gitcoin {
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.gitcoin > img {
+    width: 100%;
+    border-radius: 100%;
+    animation: bounce-up 0.2s;
+}
+
+.gitcoin:active > img {
+    animation: bounce-down 0.2s;
+}
+
+@keyframes bounce-up {
+    0% {
+        transform: scale(0.9)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes bounce-down {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        transform: scale(0.9)
+    }
+}
