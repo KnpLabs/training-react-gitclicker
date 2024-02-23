@@ -1,0 +1,11 @@
+.item {
+    display: flex;
+    width: 15rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item > span,
+.item > button {
+    margin-bottom: 0.5rem;
+}
