@@ -1,17 +1,19 @@
-// ./src/components/Game.jsx
+// Game.tsx
 
 import { useEffect, useState } from 'react';
 import './Game.css'
 import { Gitcoin } from './Gitcoin'
 import { Score } from './Score'
 import { Store } from './Store';
-import items from '../items.json'
 import { Office } from './Office';
+import items from '../items.json'
+import { Item, OwnedItems } from '../type';
 
 export function Game() {
   const [lines, setLines] = useState(0);
   const [linesPerMillisecond, setLinesPerMillisecond] = useState(0)
-  const [ownedItems, setOwnedItems] = useState({})
+
+  const [ownedItems, setOwnedItems] = useState<OwnedItems>({})
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,7 +28,10 @@ export function Game() {
 
     Object.keys(ownedItems).forEach(name => {
       const item = items.find(element => element.name === name)
-      count += item.linesPerMillisecond * ownedItems[name]
+
+      if(item != null) {
+        count += item.linesPerMillisecond * ownedItems[name]
+      }
     })
 
     setLinesPerMillisecond(count)
@@ -37,7 +42,7 @@ export function Game() {
     setLines(lines + 1);
   }
 
-  const handleBuy = item => {
+  const handleBuy = (item: Item) => {
     setLines(lines - item.price)
     setOwnedItems({
       ...ownedItems,
@@ -66,5 +71,5 @@ export function Game() {
         />
       </section>
     </main>
-  )
+  );
 }

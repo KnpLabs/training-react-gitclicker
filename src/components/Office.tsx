@@ -1,6 +1,12 @@
-// ./src/components/Office.jsx
+// ./src/components/Office.tsx
 
-export function Office({ items }) {
+import { OwnedItems } from "../type"
+
+type Props = {
+  items: OwnedItems;
+}
+
+export function Office({ items }: Props) {
     return (
         <>
             <h2>Office</h2>

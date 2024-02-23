@@ -1,9 +1,13 @@
-// ./src/components/Gitcoin.jsx
+// ./src/components/Gitcoin.tsx
 
 import './Gitcoin.css'
 import githubIcon from '../assets/github.svg'
 
-export function Gitcoin({ onClick }) {
+type Props = {
+    onClick: () => void;
+}
+
+export function Gitcoin({ onClick }: Props) {
     return (
         <button
         className="gitcoin"

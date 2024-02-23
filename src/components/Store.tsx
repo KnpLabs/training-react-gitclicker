@@ -1,10 +1,16 @@
-// ./src/components/Store.jsx
+// ./src/components/Store.tsx
 
 import './Store.css'
 import items from '../items.json'
+import { Item } from '../type';
 
-export function Store({ lines, onBuy }) {
-  const canBuy = item => {
+type Props = {
+  lines: number;
+  onBuy: (item: Item) => void;
+}
+
+export function Store({ lines, onBuy }: Props) {
+  const canBuy = (item: Item) => {
     return lines >= item.price
   }
 
@@ -24,3 +30,4 @@ export function Store({ lines, onBuy }) {
     </ul>
   )
 }
+
