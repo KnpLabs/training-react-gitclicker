@@ -8,6 +8,7 @@ import { Store } from './Store';
 import { Office } from './Office';
 import items from '../items.json'
 import { Item, OwnedItems } from '../type';
+import { Link } from 'react-router-dom';
 
 export function Game() {
   const [lines, setLines] = useState(0);
@@ -52,6 +53,9 @@ export function Game() {
 
   return (
     <main className="game">
+      <nav>
+        <Link to="/">Back to menu</Link>
+      </nav>
       <section className="left">
         <Score
           lines={Math.ceil(lines)}
