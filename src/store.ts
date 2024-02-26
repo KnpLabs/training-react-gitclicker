@@ -1,10 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { rootReducer } from './modules'
+import game from './modules/game'
 
-function createStore  () {
-    return configureStore({
-        reducer: rootReducer
-    })
+const defaultState = {
+  game: game.getInitialState()
+}
+
+export function createStore(
+  initialState = defaultState
+) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState: initialState
+  })
 }
 
 const store = createStore()

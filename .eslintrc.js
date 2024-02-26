@@ -1,11 +1,10 @@
-// .eslintrc.js
-
 module.exports = {
     root: true,
     env: {
       node: true,
       browser: true,
       es6: true,
+      'jest/globals': true,
     },
     extends: [
       'eslint:recommended',
@@ -17,6 +16,7 @@ module.exports = {
       'react',
       'react-hooks',
       '@typescript-eslint',
+      'jest'
     ],
     parser: '@typescript-eslint/parser',
     rules: {
