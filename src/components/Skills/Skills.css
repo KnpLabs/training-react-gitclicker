@@ -1,0 +1,21 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  user-select: none;
+}
+
+.skills .section img {
+  width: 2rem;
+}
+
+.skills .section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.skills .section .icons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

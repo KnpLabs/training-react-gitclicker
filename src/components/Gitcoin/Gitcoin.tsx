@@ -1,7 +1,5 @@
-// ./src/components/Gitcoin.tsx
-
 import './Gitcoin.css'
-import githubIcon from '../assets/github.svg'
+import githubIcon from '../../assets/github.svg'
 
 type Props = {
     onClick: () => void;
@@ -10,10 +8,10 @@ type Props = {
 export function Gitcoin({ onClick }: Props) {
     return (
         <button
-        className="gitcoin"
-        onClick={onClick}
+            className="gitcoin"
+            onClick={onClick}
         >
             <img src={githubIcon} alt="Gitcoin" />
         </button>
-    );
+    )
 }

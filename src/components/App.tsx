@@ -1,25 +1,28 @@
-// App.tsx
-
 import {
-    createBrowserRouter,
-    RouterProvider
+  createBrowserRouter,
+  RouterProvider
 } from 'react-router-dom'
 import { Game } from './Game'
 import { Home } from './Home'
+import './App.css'
+import { CssBaseline } from '@material-ui/core'
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Home />
-    },
-    {
-        path: '/gitclicker',
-        element: <Game />
-    }
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/gitclicker',
+    element: <Game />
+  }
 ])
 
 export default function App() {
-    return (
-        <RouterProvider router={router} />
-    )
+  return (
+    <>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </>
+  )
 }
