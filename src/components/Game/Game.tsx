@@ -1,54 +1,32 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './Game.css'
 import { Paper } from '@material-ui/core'
 import { Gitcoin } from '../Gitcoin'
 import { Score } from '../Score'
 import { Store } from '../Store'
-import items from '../../items.ts'
-import { Item, OwnedItems } from '../../type'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store.ts'
+import { buyItem, click, loop } from '../../modules/game.ts'
+import { Item } from '../../type.ts'
 import { Navbar } from '../layout/Navbar'
 import { Skills } from '../Skills'
 
-export function Game() {
-  const [lines, setLines] = useState(0)
-  const [linesPerMillisecond, setLinesPerMillisecond] = useState(0)
-
-  const [ownedItems, setOwnedItems] = useState<OwnedItems>({})
+export const Game = () => {
+  const dispatch = useDispatch()
+  const lines = useSelector((state: RootState) => state.game.lines)
+  const skills = useSelector((state: RootState) => state.game.skills)
+  const linesPerMillisecond = useSelector((state: RootState) => state.game.linesPerMillisecond)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLines(lines + linesPerMillisecond)
+      dispatch(loop())
     }, 100)
 
     return () => clearInterval(interval)
-  }, [lines, linesPerMillisecond])
+  }, [])
 
-  useEffect(() => {
-    let count = 0
-
-    Object.keys(ownedItems).forEach(name => {
-      const item = items.find(element => element.name === name)
-
-      if(item != null) {
-        count += item.linesPerMillisecond * ownedItems[name]
-      }
-    })
-
-    setLinesPerMillisecond(count)
-  }, [ownedItems])
-
-
-  const handleClick = () => {
-    setLines(lines + 1)
-  }
-
-  const handleBuy = (item: Item) => {
-    setLines(lines - item.price)
-    setOwnedItems({
-      ...ownedItems,
-      [item.name]: (ownedItems[item.name] || 0) + 1
-    })
-  }
+  const handleClick = () => dispatch(click())
+  const handleBuy = (item: Item) => dispatch(buyItem(item))
 
   return (
     <>
@@ -63,7 +41,7 @@ export function Game() {
         </Paper>
 
         <Paper elevation={3} className="center">
-          <Skills skills={ownedItems} />
+          <Skills skills={skills} />
         </Paper>
 
         <Paper elevation={3} className="right">
