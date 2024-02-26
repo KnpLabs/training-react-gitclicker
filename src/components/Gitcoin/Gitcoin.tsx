@@ -1,10 +1,10 @@
 import './Gitcoin.css'
 import githubIcon from '../../assets/github.svg'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../store'
 import { click } from '../../modules/game'
 
 export const Gitcoin = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleClick = () => dispatch(click())
 
   return (

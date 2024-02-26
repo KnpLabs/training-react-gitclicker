@@ -6,18 +6,22 @@ import { Gitcoin } from '../Gitcoin'
 import { Score } from '../Score'
 import { Store } from '../Store'
 import { Skills } from '../Skills'
-import { useDispatch } from 'react-redux'
-import { loop } from '../../modules/game.ts'
+import { start, stop, loop } from '../../modules/game.ts'
+import { useAppDispatch } from '../../store.ts'
 
 export const Game = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(start())
     const interval = setInterval(() => {
       dispatch(loop())
     }, 100)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      dispatch(stop())
+    }
   }, [])
 
   return (

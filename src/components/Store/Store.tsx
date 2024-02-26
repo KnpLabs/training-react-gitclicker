@@ -3,13 +3,13 @@ import items from '../../items'
 import { Item as ItemType } from '../../type'
 import Typography from '@material-ui/core/Typography'
 import { Item } from './Item'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { buyItem } from '../../modules/game'
-import { RootState } from '../../store'
+import { RootState, useAppDispatch } from '../../store'
 
 export const Store = () => {
   const lines = useSelector((state: RootState) => state.game.lines)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleBuy = (item: ItemType) => dispatch(buyItem(item))
 
   return (
