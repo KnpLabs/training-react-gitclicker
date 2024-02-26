@@ -8,3 +8,10 @@ export type Item = {
 export type OwnedItems = {
     [key: string]: number;
 }
+
+export enum RequestStatus {
+    Idle = 'idle',
+    Loading = 'loading',
+    Succeeded = 'succeeded',
+    Failed = 'failed'
+}

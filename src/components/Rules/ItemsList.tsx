@@ -11,9 +11,11 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import AddIcon from '@material-ui/icons/Add'
 import numberFormat from '../../utils/numberFormat'
-import { RootState } from '../../store'
+import { RootState, useAppDispatch } from '../../store'
 import { useNavigate } from 'react-router-dom'
 import { Fab, makeStyles } from '@material-ui/core'
+import { deleteItem } from '../../modules/rules'
+import { Item, RequestStatus } from '../../type'
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -29,8 +31,13 @@ const useStyles = makeStyles((theme) => ({
 
 export const ItemsList = () => {
   const items = useSelector((state: RootState) => state.rules.items)
+  const requestStatus = useSelector((state: RootState) => state.rules.deleteItemRequestStatus)
   const classes = useStyles()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const handleDelete = (item: Item) => {
+    dispatch(deleteItem(item.id))
+  }
 
   return (
     <>
@@ -60,6 +67,8 @@ export const ItemsList = () => {
                   <IconButton
                     color="secondary"
                     aria-label="delete"
+                    disabled={requestStatus === RequestStatus.Loading}
+                    onClick={() => handleDelete(item)}
                   >
                     <DeleteIcon />
                   </IconButton>
