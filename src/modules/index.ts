@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { reducer as gameReducer } from './game'
+import game from './game'
 
 export const rootReducer =  combineReducers({
-    game: gameReducer
+    game: game.reducer
 })

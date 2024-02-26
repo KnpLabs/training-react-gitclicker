@@ -1,17 +1,17 @@
-// ./src/components/Store.tsx
-
 import './Store.css'
-import items from '../../items.ts'
+import items from '../../items'
 import { Item as ItemType } from '../../type'
-import { Typography } from '@material-ui/core'
-import { Item } from './Item.tsx'
+import Typography from '@material-ui/core/Typography'
+import { Item } from './Item'
+import { useDispatch, useSelector } from 'react-redux'
+import { buyItem } from '../../modules/game'
+import { RootState } from '../../store'
 
-type Props = {
-  lines: number;
-  onBuy: (item: ItemType) => void;
-}
+export const Store = () => {
+  const lines = useSelector((state: RootState) => state.game.lines)
+  const dispatch = useDispatch()
+  const handleBuy = (item: ItemType) => dispatch(buyItem(item))
 
-export function Store({ lines, onBuy }: Props) {
   return (
     <div className="store">
       <Typography variant="h5">Store</Typography>
@@ -21,10 +21,9 @@ export function Store({ lines, onBuy }: Props) {
           key={key}
           item={item}
           lines={lines}
-          onBuy={onBuy}
+          onBuy={handleBuy}
         />
       )}
     </div>
   )
 }
-

@@ -1,14 +1,12 @@
 import './Skills.css'
 import Typography from '@material-ui/core/Typography'
 import { Section } from './Section'
-import { OwnedItems } from '../../type'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
-type Props = {
-  skills: OwnedItems;
-}
+export const Skills = () => {
+  const skills = useSelector((state: RootState) => state.game.skills)
 
-
-export const Skills = ({ skills }: Props) => {
   return (
     <>
       <Typography variant="h5">Skills</Typography>

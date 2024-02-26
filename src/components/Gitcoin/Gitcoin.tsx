@@ -1,17 +1,18 @@
 import './Gitcoin.css'
 import githubIcon from '../../assets/github.svg'
+import { useDispatch } from 'react-redux'
+import { click } from '../../modules/game'
 
-type Props = {
-    onClick: () => void;
-}
+export const Gitcoin = () => {
+  const dispatch = useDispatch()
+  const handleClick = () => dispatch(click())
 
-export function Gitcoin({ onClick }: Props) {
-    return (
-        <button
-            className="gitcoin"
-            onClick={onClick}
-        >
-            <img src={githubIcon} alt="Gitcoin" />
-        </button>
-    )
+  return (
+    <button
+      className="gitcoin"
+      onClick={handleClick}
+    >
+      <img src={githubIcon} alt="Gitcoin" />
+    </button>
+  )
 }
