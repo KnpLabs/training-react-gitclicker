@@ -8,6 +8,10 @@ import './App.css'
 import { CssBaseline } from '@material-ui/core'
 import { Provider } from 'react-redux'
 import store from '../store'
+import { Rules } from './Rules'
+import { ItemsList } from './Rules/ItemsList'
+import { CreateItemForm } from './Rules/CreateItemForm'
+import { EditItemForm } from './Rules/EditItemForm'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +21,24 @@ const router = createBrowserRouter([
   {
     path: '/gitclicker',
     element: <Game />
+  },
+  {
+    path: '/rules',
+    element: <Rules />,
+    children: [
+      {
+        path: '/rules',
+        element: <ItemsList />
+      },
+      {
+        path: '/rules/add',
+        element: <CreateItemForm />
+      },
+      {
+        path: '/rules/edit/:id',
+        element: <EditItemForm />
+      }
+    ]
   }
 ])
 

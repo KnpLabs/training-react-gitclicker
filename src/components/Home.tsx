@@ -40,6 +40,13 @@ export function Home() {
                     </Button>
                   </Link>
                 </Grid>
+                <Grid item>
+                  <Link to="/rules">
+                    <Button variant="contained" color="primary">
+                      Rules
+                    </Button>
+                  </Link>
+                </Grid>
               </Grid>
             </div>
           </Container>
