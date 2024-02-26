@@ -1,5 +1,7 @@
 import Typography from '@material-ui/core/Typography'
-import items from '../../items.ts'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import getItemIcon from '../../utils/getItemIcon'
 
 type Props = {
   itemName: string
@@ -8,6 +10,7 @@ type Props = {
 
 export const Section = ({ itemName, number }: Props) => {
   const repeat = Array.from([ ...Array(number).keys() ])
+  const items = useSelector((state: RootState) => state.game.items)
   const item = items.find(element => element.name === itemName)
 
   if(item == null) {
@@ -21,7 +24,7 @@ export const Section = ({ itemName, number }: Props) => {
         {repeat.map(key =>
           <img
             key={key}
-            src={item.icon}
+            src={getItemIcon(item)}
             alt={item.name}
           />
         )}

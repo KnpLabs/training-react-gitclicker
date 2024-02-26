@@ -7,12 +7,14 @@ type GameState = {
     lines: number;
     linesPerMillisecond: number;
     skills: OwnedItems;
+    items: Item[];
 }
 
 const INITIAL_STATE: GameState = {
     lines: 0,
     linesPerMillisecond: 0,
-    skills: {}
+    skills: {},
+    items: []
 }
 
 // Side Effects / thunks
@@ -23,6 +25,11 @@ export const start = createAsyncThunk(
         const initalGameState = localStoredGame ? JSON.parse(localStoredGame) : {}
 
         dispatch(initGame(initalGameState))
+
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/shop/items`)
+        const items = await response.json()
+
+        dispatch(fetchedItems(items))
     }
 )
 
@@ -44,6 +51,12 @@ const game = createSlice({
             return {
                 ...state,
                 ...action.payload
+            }
+        },
+        fetchedItems: (state, action: PayloadAction<Item[]>) => {
+            return {
+                ...state,
+                items: action.payload
             }
         },
         click: state => {
@@ -68,7 +81,13 @@ const game = createSlice({
     }
 })
 
-const { click, buyItem, loop, initGame } = game.actions
+const {
+    click,
+    buyItem,
+    loop,
+    initGame,
+    fetchedItems
+} = game.actions
 
 export { click, buyItem, loop }
 

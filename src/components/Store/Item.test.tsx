@@ -5,6 +5,7 @@ import { Item } from './Item'
 describe('Item', () => {
   it('Renders a buyable item', () => {
     const item = {
+      id: 1,
       name: 'Bash',
       price: 10,
       linesPerMillisecond: 0.1,
@@ -32,6 +33,7 @@ describe('Item', () => {
 
   it('Renders a non buyable item', () => {
     const item = {
+      id: 1,
       name: 'Bash',
       price: 10,
       linesPerMillisecond: 0.1,

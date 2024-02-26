@@ -19,7 +19,8 @@ describe('Gitcoin', () => {
       game: {
         lines: 6,
         linesPerMillisecond: 2,
-        skills: {}
+        skills: {},
+        items: []
       }
     }
 

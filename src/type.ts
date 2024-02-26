@@ -1,8 +1,8 @@
 export type Item = {
+    id: number;
     name: string;
     price: number;
     linesPerMillisecond: number;
-    icon: string;
 }
 
 export type OwnedItems = {

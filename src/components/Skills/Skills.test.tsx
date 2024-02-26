@@ -9,7 +9,12 @@ describe('Skills', () => {
       game: {
         lines: 6,
         linesPerMillisecond: 2,
-        skills: { 'Bash': 2, 'Git': 3, 'Javascript': 4 }
+        skills: { 'Bash': 2, 'Git': 3, 'Javascript': 4 },
+        items: [
+          { id: 1, name: 'Bash', price: 10, linesPerMillisecond: 0.1 },
+          { id: 2, name: 'Git', price: 20, linesPerMillisecond: 0.2 },
+          { id: 3, name: 'Javascript', price: 30, linesPerMillisecond: 0.3 }
+        ]
       }
     }
 

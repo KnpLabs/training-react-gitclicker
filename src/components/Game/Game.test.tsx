@@ -10,6 +10,7 @@ describe('Game', () => {
       game: {
         lines: 6,
         linesPerMillisecond: 2,
+        items: [],
         skills: {}
       }
     }
