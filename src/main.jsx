@@ -1,32 +1,52 @@
 import { createRoot } from "react-dom/client";
 
-const user = {
-  id: 1,
-  name: "John Doe",
-};
+import Button from "./Button";
+import CustomButton from "./CustomButton";
+import Greeting from "./Greeting";
+import GreetingImage from "./GreetingImage";
+import GreetingTime from "./GreetingTime";
+import { PersonList } from "./PersonList";
 
-function capitalize(name) {
-  return name.toUpperCase();
+function handleClick() {
+  alert("Congratulation! You clicked a button!");
 }
 
-function getAvatarUrl(user) {
-  return `https://api.dicebear.com/9.x/adventurer/svg?seed=${user.name}${user.id}`;
-}
-
-const greeting = (
+const greetings = (
   <div>
-    <h1>Hello {capitalize(user.name)}</h1>
-    <img src={getAvatarUrl(user)} alt={`${user.name}'s avatar`} />
+    <Greeting firstName="John" lastName="Doe" />
+    <Greeting firstName="Georges" lastName="Abitbol" />
+    <Greeting firstName="Edgar" lastName="KNP" />
   </div>
 );
 
-const header = (
-  <header>
-    <img src="https://picsum.photos/id/237/200/300" alt="picsum" />
-    {greeting}
-  </header>
+const customButton = (
+  <CustomButton color="red">
+    <span>Click me</span>
+  </CustomButton>
 );
 
-const root = createRoot(document.getElementById("root"));
+const button = <Button onClick={handleClick}>Click me</Button>;
 
-root.render(header);
+const greetingMorning = <GreetingTime name="John" isMorning={true} />;
+const greetingEvening = <GreetingTime name="Jane" isMorning={false} />;
+
+const greetingWithImage = <GreetingImage name="Edgar" withImage={true} />; // <GreetingImage name="Edgar" withImage />
+const greetingWithoutImage = <GreetingImage name="Toto" withImage={false} />;
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <>
+    {greetings}
+    ---
+    {customButton}
+    {button}
+    ---
+    <PersonList />
+    ---
+    {greetingMorning}
+    {greetingEvening}
+    ---
+    {greetingWithImage}
+    {greetingWithoutImage}
+  </>,
+);
