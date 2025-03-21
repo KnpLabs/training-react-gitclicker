@@ -5,6 +5,7 @@ import CheckboxOnclick from "./CheckboxOnclick";
 import ExampleDidMount from "./ExampleDidMount";
 import ExampleDidUpdate from "./ExampleDidUpdate";
 import ExampleWillUnmount from "./ExampleWillUnmount";
+import { Game } from "./components/Game";
 
 class Example extends React.Component {
   constructor(props) {
@@ -41,5 +42,8 @@ root.render(
     <ExampleDidMount />
     <ExampleDidUpdate />
     <Example />
+    {/* 💡 During the demo, uncomment the following lines ↙️ */}
+    {/* <h1>GitClicker</h1>
+    <Game /> */}
   </>,
 );
