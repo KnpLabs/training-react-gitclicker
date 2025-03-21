@@ -1,5 +1,6 @@
 import "./Store.css";
 import items from "@/items.json";
+// import PropTypes from "prop-types";
 
 export function Store({ lines, onBuy }) {
   const canBuy = (item) => {
@@ -25,3 +26,8 @@ export function Store({ lines, onBuy }) {
     </ul>
   );
 }
+
+// Store.propTypes = {
+//   lines: PropTypes.number.isRequired,
+//   onBuy: PropTypes.func.isRequired,
+// };
