@@ -6,6 +6,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <>
     <ParentComponent />
-    <Game />
+    {/* 💡 Uncomment the following to enable the Game component */}
+    {/* <Game /> */}
   </>,
 );

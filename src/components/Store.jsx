@@ -1,7 +1,7 @@
 import "./Store.css";
 import items from "@/items.json";
 
-export function Store({ lines }) {
+export function Store({ lines, onBuy }) {
   const canBuy = (item) => {
     return lines >= item.price;
   };
@@ -13,7 +13,11 @@ export function Store({ lines }) {
           <span>
             {item.name} - {item.price}
           </span>
-          <button disabled={!canBuy(item)} type="button">
+          <button
+            onClick={() => onBuy(item)}
+            disabled={!canBuy(item)}
+            type="button"
+          >
             Buy
           </button>
         </li>
