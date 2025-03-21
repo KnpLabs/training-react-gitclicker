@@ -1,52 +1,45 @@
+import React from "react";
 import { createRoot } from "react-dom/client";
+import Checkbox from "./Checkbox";
+import CheckboxOnclick from "./CheckboxOnclick";
+import ExampleDidMount from "./ExampleDidMount";
+import ExampleDidUpdate from "./ExampleDidUpdate";
+import ExampleWillUnmount from "./ExampleWillUnmount";
 
-import Button from "./Button";
-import CustomButton from "./CustomButton";
-import Greeting from "./Greeting";
-import GreetingImage from "./GreetingImage";
-import GreetingTime from "./GreetingTime";
-import { PersonList } from "./PersonList";
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showComponent: true,
+    };
+  }
 
-function handleClick() {
-  alert("Congratulation! You clicked a button!");
+  toggleComponent = () => {
+    this.setState((prevState) => ({
+      showComponent: !prevState.showComponent,
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.toggleComponent} type="button">
+          {this.state.showComponent ? "Hide Component" : "Show Component"}
+        </button>
+        {this.state.showComponent && <ExampleWillUnmount />}
+      </div>
+    );
+  }
 }
-
-const greetings = (
-  <div>
-    <Greeting firstName="John" lastName="Doe" />
-    <Greeting firstName="Georges" lastName="Abitbol" />
-    <Greeting firstName="Edgar" lastName="KNP" />
-  </div>
-);
-
-const customButton = (
-  <CustomButton color="red">
-    <span>Click me</span>
-  </CustomButton>
-);
-
-const button = <Button onClick={handleClick}>Click me</Button>;
-
-const greetingMorning = <GreetingTime name="John" isMorning={true} />;
-const greetingEvening = <GreetingTime name="Jane" isMorning={false} />;
-
-const greetingWithImage = <GreetingImage name="Edgar" withImage={true} />; // <GreetingImage name="Edgar" withImage />
-const greetingWithoutImage = <GreetingImage name="Toto" withImage={false} />;
 
 const root = createRoot(document.getElementById("root"));
 root.render(
   <>
-    {greetings}
-    ---
-    {customButton}
-    {button}
-    ---
-    <PersonList />
-    ---
-    {greetingMorning}
-    {greetingEvening}
-    ---
-    {greetingWithImage}
-    {greetingWithoutImage}
+    <Checkbox name="example" label="Example Checkbox" />
+    <CheckboxOnclick name="exampleOnclick" label="Example Checkbox Onclick" />
+    <h1>React Lifecycle Methods</h1>
+    <ExampleDidMount />
+    <ExampleDidUpdate />
+    <Example />
   </>,
 );
