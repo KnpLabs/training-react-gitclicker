@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Game.css";
-import items from "../items.json";
+import items from "@/items.json";
 import { Gitcoin } from "./Gitcoin";
 import { Office } from "./Office";
 import { Score } from "./Score";

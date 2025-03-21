@@ -7,6 +7,6 @@ root.render(
   <>
     <ParentComponent />
     {/* 💡 Uncomment the following to enable the Game component */}
-    {/* <Game /> */}
+    <Game />
   </>,
 );
