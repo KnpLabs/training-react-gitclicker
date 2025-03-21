@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Bash",
+    "price": 10,
+    "linesPerMillisecond": 0.1
+  },
+  {
+    "name": "Git",
+    "price": 20,
+    "linesPerMillisecond": 1.2
+  },
+  {
+    "name": "Javascript",
+    "price": 50,
+    "linesPerMillisecond": 14.0
+  },
+  {
+    "name": "React",
+    "price": 75,
+    "linesPerMillisecond": 75.0
+  },
+  {
+    "name": "Vim",
+    "price": 100,
+    "linesPerMillisecond": 100.0
+  }
+]
