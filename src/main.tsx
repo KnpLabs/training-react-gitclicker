@@ -1,12 +1,13 @@
+import ParentComponent from "@/ParentComponent";
+import { Game } from "@/components/Game";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import ParentComponent from "./ParentComponent";
-import { Game } from "./components/Game";
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <>
+  <React.StrictMode>
     <ParentComponent />
     {/* 💡 Uncomment the following to enable the Game component */}
-    <Game />
-  </>,
+    {/* <Game /> */}
+  </React.StrictMode>,
 );

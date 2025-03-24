@@ -1,4 +1,10 @@
-export function Office({ items }) {
+import type { OwnedItems } from "@/types";
+
+type Props = {
+  items: OwnedItems;
+};
+
+export function Office({ items }: Props) {
   return (
     <>
       <h2>Office</h2>

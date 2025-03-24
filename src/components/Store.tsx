@@ -1,9 +1,15 @@
+import type { Item } from "@/types";
 import "./Store.css";
 import items from "@/items.json";
 // import PropTypes from "prop-types";
 
-export function Store({ lines, onBuy }) {
-  const canBuy = (item) => {
+type Props = {
+  lines: number;
+  onBuy: (item: Item) => void;
+};
+
+export function Store({ lines, onBuy }: Props) {
+  const canBuy = (item: Item) => {
     return lines >= item.price;
   };
 
