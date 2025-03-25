@@ -1,51 +1,51 @@
-import { useEffect, useState } from "react";
-import "./Game.css";
-import items from "@/items.json";
-import type { Item, OwnedItems } from "@/types";
-import { Gitcoin } from "./Gitcoin";
-import { Office } from "./Office";
-import { Score } from "./Score";
-import { Store } from "./Store";
+import { useEffect, useState } from 'react'
+import './Game.css'
+import items from '@/items.json'
+import type { Item, OwnedItems } from '@/types'
+import { Gitcoin } from './Gitcoin'
+import { Office } from './Office'
+import { Score } from './Score'
+import { Store } from './Store'
 
 export function Game() {
-  const [lines, setLines] = useState(0);
-  const [linesPerMillisecond, setLinesPerMillisecond] = useState(0);
+  const [lines, setLines] = useState(0)
+  const [linesPerMillisecond, setLinesPerMillisecond] = useState(0)
 
-  const [ownedItems, setOwnedItems] = useState<OwnedItems>({});
+  const [ownedItems, setOwnedItems] = useState<OwnedItems>({})
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLines(lines + linesPerMillisecond);
-    }, 100);
+      setLines(lines + linesPerMillisecond)
+    }, 100)
 
-    return () => clearInterval(interval);
-  }, [lines, linesPerMillisecond]);
+    return () => clearInterval(interval)
+  }, [lines, linesPerMillisecond])
 
   useEffect(() => {
-    let count = 0;
+    let count = 0
 
     for (const name of Object.keys(ownedItems)) {
-      const item = items.find((element) => element.name === name);
+      const item = items.find(element => element.name === name)
 
       if (item != null) {
-        count += item.linesPerMillisecond * ownedItems[name];
+        count += item.linesPerMillisecond * ownedItems[name]
       }
     }
 
-    setLinesPerMillisecond(count);
-  }, [ownedItems]);
+    setLinesPerMillisecond(count)
+  }, [ownedItems])
 
   const handleClick = () => {
-    setLines(lines + 1);
-  };
+    setLines(lines + 1)
+  }
 
   const handleBuy = (item: Item) => {
-    setLines(lines - item.price);
+    setLines(lines - item.price)
     setOwnedItems({
       ...ownedItems,
       [item.name]: (ownedItems[item.name] || 0) + 1,
-    });
-  };
+    })
+  }
 
   return (
     <main className="game">
@@ -65,5 +65,5 @@ export function Game() {
         <Store lines={lines} onBuy={handleBuy} />
       </section>
     </main>
-  );
+  )
 }

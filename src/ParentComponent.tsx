@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Checkbox from "./Checkbox";
+import { useState } from 'react'
+import Checkbox from './Checkbox'
 
 function ParentComponent() {
-  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false)
 
   const handleAcceptTerms = () => {
-    setHasAcceptedTerms(!hasAcceptedTerms);
-  };
+    setHasAcceptedTerms(!hasAcceptedTerms)
+  }
 
   return (
     <Checkbox
@@ -15,7 +15,7 @@ function ParentComponent() {
       onChange={handleAcceptTerms}
       checked={hasAcceptedTerms}
     />
-  );
+  )
 }
 
-export default ParentComponent;
+export default ParentComponent

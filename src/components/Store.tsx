@@ -1,24 +1,27 @@
-import type { Item } from "@/types";
-import "./Store.css";
-import items from "@/items.json";
+import type { Item } from '@/types'
+import './Store.css'
+import items from '@/items.json'
 // import PropTypes from "prop-types";
 
 type Props = {
-  lines: number;
-  onBuy: (item: Item) => void;
-};
+  lines: number
+  onBuy: (item: Item) => void
+}
 
 export function Store({ lines, onBuy }: Props) {
   const canBuy = (item: Item) => {
-    return lines >= item.price;
-  };
+    return lines >= item.price
+  }
 
   return (
     <ul>
-      {items.map((item) => (
+      {items.map(item => (
         <li key={item.name} className="item">
           <span>
-            {item.name} - {item.price}
+            {item.name}
+            {' '}
+            -
+            {item.price}
           </span>
           <button
             onClick={() => onBuy(item)}
@@ -30,7 +33,7 @@ export function Store({ lines, onBuy }: Props) {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 
 // Store.propTypes = {
