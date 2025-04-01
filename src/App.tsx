@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-import { Game } from '@/components/Game'
-import Home from '@/components/pages/Home'
+import Home from '@/pages/Home'
 import { Navbar } from '@/components/layout/Navbar'
+import GitClicker from '@/pages/GitClicker'
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
-          <Route path="gitclicker" element={<Game />} />
+          <Route path="gitclicker" element={<GitClicker />} />
         </Route>
       </Routes>
     </BrowserRouter>
