@@ -2,13 +2,15 @@ import { Item as ItemType } from '@/types'
 import { Item } from './Item.tsx'
 import { items } from '@/constants/items.ts'
 import { Grid2 as Grid } from '@mui/material'
+import { buyItem } from '@/modules/game.ts'
+import { RootState } from '@/store.ts'
+import { useSelector, useDispatch } from 'react-redux'
 
-type Props = {
-  lines: number
-  onBuy: (item: ItemType) => void
-}
+export function Store() {
+  const lines = useSelector((state: RootState) => state.game.lines)
+  const dispatch = useDispatch()
+  const handleBuy = (item: ItemType) => dispatch(buyItem(item))
 
-export function Store({ lines, onBuy }: Props) {
   return (
     <Grid container component="ul" spacing={2} display="flex" flexDirection="column">
       {items.map((item, key) => (
@@ -16,7 +18,7 @@ export function Store({ lines, onBuy }: Props) {
           key={key}
           item={item}
           lines={lines}
-          onBuy={onBuy}
+          onBuy={handleBuy}
         />
       ))}
     </Grid>

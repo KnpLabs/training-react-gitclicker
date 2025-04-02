@@ -1,16 +1,17 @@
-type Props = {
-  lines: number
-  linesPerSecond: number
-}
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store'
 
-export function Score({ lines, linesPerSecond }: Props) {
+export const Score = () => {
+  const lines = useSelector((state: RootState) => state.game.lines)
+  const linesPerMillisecond = useSelector((state: RootState) => state.game.linesPerMillisecond)
+
   return (
     <>
       <h3 style={{ fontFamily: 'Orbitron' }}>
         {Math.ceil(lines)} lines
       </h3>
       <small>
-        per second: {Math.ceil(linesPerSecond * 10)}
+        per second: {Math.ceil(Math.ceil(linesPerMillisecond * 10) * 10)}
       </small>
     </>
   )

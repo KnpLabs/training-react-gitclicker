@@ -1,61 +1,32 @@
-import { useEffect, useState } from 'react'
 import '@/styles/game/index.css'
-import type { Item, OwnedItems } from '@/types'
+import { useEffect } from 'react'
 import { Grid2 as Grid, Card, CardContent, CardHeader } from '@mui/material'
-import { items } from '@/constants/items'
 import { Score, Gitcoin } from '@/components/game/core'
 import { Skills } from '@/components/game/skills'
 import { Store } from '@/components/game/store'
+import { loop } from '@/modules/game'
+
+import { useDispatch } from 'react-redux'
 
 export function Game() {
-  const [lines, setLines] = useState(0)
-  const [linesPerMillisecond, setLinesPerMillisecond] = useState(0)
-
-  const [ownedItems, setOwnedItems] = useState<OwnedItems>({})
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLines(prev => prev + linesPerMillisecond)
+      dispatch(loop())
     }, 100)
+
     return () => clearInterval(interval)
-  }, [linesPerMillisecond])
-
-  useEffect(() => {
-    let count = 0
-
-    Object.keys(ownedItems).forEach((name) => {
-      const item = items.find(element => element.name === name)
-
-      if (item != null) {
-        count += item.linesPerMillisecond * ownedItems[name]
-      }
-    })
-
-    setLinesPerMillisecond(count)
-  }, [ownedItems])
-
-  const handleClick = () => {
-    setLines(lines + 1)
-  }
-
-  const handleBuy = (item: Item) => {
-    setLines(lines - item.price)
-    setOwnedItems({
-      ...ownedItems,
-      [item.name]: (ownedItems[item.name] || 0) + 1,
-    })
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
       <Grid size={3}>
         <Card component="section" className="card">
           <CardContent className="content">
-            <Score
-              lines={Math.ceil(lines)}
-              linesPerSecond={Math.ceil(linesPerMillisecond * 10)}
-            />
-            <Gitcoin onClick={handleClick} />
+            <Score />
+            <Gitcoin />
           </CardContent>
         </Card>
       </Grid>
@@ -63,7 +34,7 @@ export function Game() {
         <Card component="section" className="card">
           <CardHeader title="Skills" />
           <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Skills skills={ownedItems} />
+            <Skills />
           </CardContent>
         </Card>
       </Grid>
@@ -71,7 +42,7 @@ export function Game() {
         <Card component="section" className="card">
           <CardHeader title="Store" />
           <CardContent>
-            <Store lines={lines} onBuy={handleBuy} />
+            <Store />
           </CardContent>
         </Card>
       </Grid>
