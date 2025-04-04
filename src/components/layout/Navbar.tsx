@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { Link, Outlet } from 'react-router'
-import GitHubIcon from '@mui/icons-material/GitHub'
+import githubIcon from '@/assets/github.svg'
 import '@/styles/layout/navbar.css'
 
 export const Navbar = () => {
@@ -9,7 +9,7 @@ export const Navbar = () => {
       <AppBar position="relative">
         <Toolbar>
           <Link to="/" className="navbar-link">
-            <GitHubIcon />
+            <img src={githubIcon} alt="Gitcoin" />
             <Typography variant="h6" color="inherit" noWrap>
               Gitclicker
             </Typography>
