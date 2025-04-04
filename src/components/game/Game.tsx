@@ -4,20 +4,22 @@ import { Grid2 as Grid, Card, CardContent, CardHeader } from '@mui/material'
 import { Score, Gitcoin } from '@/components/game/core'
 import { Skills } from '@/components/game/skills'
 import { Store } from '@/components/game/store'
-import { loop } from '@/modules/game'
-
-import { useDispatch } from 'react-redux'
+import { loop, start, stop } from '@/modules/game'
+import { useAppDispatch } from '@/store'
 
 export function Game() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    dispatch(start())
     const interval = setInterval(() => {
       dispatch(loop())
     }, 100)
 
-    return () => clearInterval(interval)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      clearInterval(interval)
+      dispatch(stop())
+    }
   }, [])
 
   return (
