@@ -4,6 +4,8 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
+import vitest from '@vitest/eslint-plugin'
+import testingLibrary from 'eslint-plugin-testing-library'
 
 export default tseslint.config(
   {

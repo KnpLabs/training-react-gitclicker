@@ -24,7 +24,10 @@
 
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+
+    /* Testing */
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }
