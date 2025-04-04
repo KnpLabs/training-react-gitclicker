@@ -1,4 +1,4 @@
-import './Gitcoin.css'
+import '@/styles/game/core/gitcoin.css'
 import githubIcon from '@/assets/github.svg'
 
 type Props = {

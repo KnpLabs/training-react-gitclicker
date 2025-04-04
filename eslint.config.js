@@ -25,6 +25,30 @@ export default tseslint.config(
       ],
     },
   },
-  stylistic.configs.recommended,
+  {
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      ...stylistic.configs.recommended.rules,
+      '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'non-jsx' }],
+    },
+  },
+  {
+    files: ['**/*.test.ts?(x)'],
+    languageOptions: {
+      globals: {
+        ...vitest.environments.env.globals,
+      },
+    },
+    plugins: {
+      vitest,
+      'testing-library': testingLibrary,
+    },
+    rules: {
+      ...vitest.configs.recommended.rules,
+      ...testingLibrary.configs['flat/react'].rules,
+    },
+  },
   { ignores: ['dist'] },
 )
