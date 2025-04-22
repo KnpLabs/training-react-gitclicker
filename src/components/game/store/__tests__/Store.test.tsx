@@ -1,5 +1,6 @@
 import { render, screen } from '@/test-setup'
 import { Store } from '../Store'
+import { items } from '@/utils/__mocks__/items.mock'
 
 describe('Store', () => {
   it('renders correctly', () => {
@@ -8,6 +9,7 @@ describe('Store', () => {
         lines: 6,
         linesPerMillisecond: 2,
         skills: {},
+        items,
       },
     }
 

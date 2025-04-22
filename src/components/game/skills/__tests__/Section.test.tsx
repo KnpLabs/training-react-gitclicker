@@ -1,9 +1,22 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@/test-setup'
 import { Section } from '../Section'
 
 describe('Section', () => {
   it('displays the owned skills', () => {
-    render(<Section itemName="Bash" number={3} />)
+    const initialState = {
+      game: {
+        lines: 6,
+        linesPerMillisecond: 2,
+        skills: {},
+        items: [{
+          id: 1,
+          name: 'Bash',
+          price: 10,
+          linesPerMillisecond: 0.1,
+        }],
+      },
+    }
+    render(<Section itemName="Bash" number={3} />, { preloadedState: initialState })
 
     expect(screen.getByText('Bash')).toBeInTheDocument()
     expect(screen.getAllByAltText('Bash')).toHaveLength(3)

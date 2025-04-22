@@ -1,39 +1,34 @@
 import { Item } from '@/types'
-import BashIcon from 'devicon/icons/bash/bash-original.svg'
-import GitIcon from 'devicon/icons/git/git-original.svg'
-import JavascriptIcon from 'devicon/icons/javascript/javascript-original.svg'
-import ReactIcon from 'devicon/icons/react/react-original.svg'
-import VimIcon from 'devicon/icons/vim/vim-original.svg'
 
 export const items: Item[] = [
   {
+    id: 1,
     name: 'Bash',
     price: 10,
     linesPerMillisecond: 0.1,
-    icon: BashIcon,
   },
   {
+    id: 2,
     name: 'Git',
     price: 100,
     linesPerMillisecond: 1.2,
-    icon: GitIcon,
   },
   {
+    id: 3,
     name: 'Javascript',
     price: 10000,
     linesPerMillisecond: 14.0,
-    icon: JavascriptIcon,
   },
   {
+    id: 4,
     name: 'React',
     price: 50000,
     linesPerMillisecond: 75.0,
-    icon: ReactIcon,
   },
   {
+    id: 5,
     name: 'Vim',
     price: 999999,
     linesPerMillisecond: 10000.0,
-    icon: VimIcon,
   },
 ]

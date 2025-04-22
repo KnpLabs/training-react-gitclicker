@@ -1,6 +1,7 @@
 import '@/styles/game/store/item.css'
 import { Typography, Button } from '@mui/material'
 import { Item as ItemType } from '@/types'
+import getItemIcon from '@/utils/getItemIcon'
 
 type Props = {
   item: ItemType
@@ -19,14 +20,10 @@ export function Item({ item, lines, onBuy }: Props) {
       onClick={() => canBuy && onBuy(item)}
     >
       <div className="title">
-        <img src={item.icon} alt={item.name} />
+        <img src={getItemIcon(item)} alt={item.name} />
         <div>
           <Typography variant="subtitle1">{item.name}</Typography>
-          <small>
-            {linePerSecond}
-            {' '}
-            lines per second
-          </small>
+          <small>{linePerSecond} lines per second</small>
         </div>
       </div>
       <Button

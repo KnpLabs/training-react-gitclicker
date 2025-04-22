@@ -1,5 +1,7 @@
-import { items } from '@/constants/items'
+import { RootState } from '@/store'
+import getItemIcon from '@/utils/getItemIcon'
 import { Box, Grid2 as Grid, Typography } from '@mui/material'
+import { useSelector } from 'react-redux'
 
 type Props = {
   itemName: string
@@ -7,6 +9,7 @@ type Props = {
 }
 
 export const Section = ({ itemName, number }: Props) => {
+  const items = useSelector((state: RootState) => state.game.items)
   const item = items.find(element => element.name === itemName)
 
   if (item == null) {
@@ -22,7 +25,7 @@ export const Section = ({ itemName, number }: Props) => {
             key={index}
           >
             <img
-              src={item.icon}
+              src={getItemIcon(item)}
               alt={item.name}
               style={{
                 width: '2rem',

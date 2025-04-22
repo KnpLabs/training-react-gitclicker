@@ -1,21 +1,14 @@
-import BashIcon from 'devicon/icons/bash/bash-original.svg'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Item } from '../Item'
+import { items } from '@/utils/__mocks__/items.mock'
 
 describe('Item', () => {
   it('Renders a buyable item', () => {
-    const item = {
-      name: 'Bash',
-      price: 10,
-      linesPerMillisecond: 0.1,
-      icon: BashIcon,
-    }
-
     const onBuy = vi.fn()
 
     render(
       <Item
-        item={item}
+        item={items[0]}
         lines={150}
         onBuy={onBuy}
       />,
@@ -27,22 +20,15 @@ describe('Item', () => {
 
     fireEvent.click(screen.getByRole('button'))
 
-    expect(onBuy).toHaveBeenCalledWith(item)
+    expect(onBuy).toHaveBeenCalledWith(items[0])
   })
 
   it('Renders a non buyable item', () => {
-    const item = {
-      name: 'Bash',
-      price: 10,
-      linesPerMillisecond: 0.1,
-      icon: BashIcon,
-    }
-
     const onBuy = vi.fn()
 
     render(
       <Item
-        item={item}
+        item={items[0]}
         lines={0}
         onBuy={onBuy}
       />,
@@ -54,6 +40,6 @@ describe('Item', () => {
 
     fireEvent.click(screen.getByRole('button'))
 
-    expect(onBuy).not.toHaveBeenCalledWith(item)
+    expect(onBuy).not.toHaveBeenCalledWith(items[0])
   })
 })
