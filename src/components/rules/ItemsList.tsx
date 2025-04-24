@@ -1,4 +1,4 @@
-import { RootState } from '@/store'
+import { RootState, useAppDispatch } from '@/store'
 import numberFormat from '@/tests/numberFormat'
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, IconButton, Fab } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
@@ -6,10 +6,19 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { deleteItem } from '@/modules/rules'
+import { Item, RequestStatus } from '@/types'
 
 export function ItemsList() {
-  const items = useSelector((state: RootState) => state.rules.items)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  const items = useSelector((state: RootState) => state.rules.items)
+  const requestStatus = useSelector((state: RootState) => state.rules.deleteItemRequestStatus)
+
+  const handleDelete = (item: Item) => {
+    dispatch(deleteItem(item.id))
+  }
 
   return (
     <>
@@ -39,6 +48,8 @@ export function ItemsList() {
                   <IconButton
                     color="error"
                     aria-label="delete"
+                    disabled={requestStatus === RequestStatus.Loading}
+                    onClick={() => handleDelete(item)}
                   >
                     <DeleteIcon />
                   </IconButton>
