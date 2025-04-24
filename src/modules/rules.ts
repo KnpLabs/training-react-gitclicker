@@ -1,13 +1,15 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Item } from '@/types'
+import { RequestStatus, type Item, type TRequestStatus } from '@/types'
 
 // Initial state
 type RulesState = {
   items: Item[]
+  addItemRequestStatus: TRequestStatus
 }
 
 const INITIAL_STATE: RulesState = {
   items: [],
+  addItemRequestStatus: RequestStatus.Idle,
 }
 
 // Side Effects / thunks
@@ -24,6 +26,8 @@ export const fetchItems = createAsyncThunk(
 export const addItem = createAsyncThunk(
   'rules/addItem',
   async (itemData: Omit<Item, 'id'>, { dispatch }) => {
+    dispatch(setAddItemRequestStatus(RequestStatus.Loading))
+
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/shop/items`, {
       method: 'POST',
       headers: {
@@ -36,6 +40,7 @@ export const addItem = createAsyncThunk(
     const newItem = await response.json() as Item
 
     dispatch(itemReceived(newItem))
+    dispatch(setAddItemRequestStatus(RequestStatus.Succeeded))
   },
 )
 
@@ -49,16 +54,21 @@ const rules = createSlice({
     itemReceived: (state, action: PayloadAction<Item>) => {
       state.items.push(action.payload)
     },
+    setAddItemRequestStatus: (state, action: PayloadAction<TRequestStatus>) => {
+      state.addItemRequestStatus = action.payload
+    },
   },
 })
 
 const {
   fetchedItems,
   itemReceived,
+  setAddItemRequestStatus,
 } = rules.actions
 
 export {
   fetchedItems,
+  setAddItemRequestStatus,
 }
 
 export default rules.reducer
