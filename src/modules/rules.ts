@@ -6,12 +6,14 @@ type RulesState = {
   items: Item[]
   addItemRequestStatus: TRequestStatus
   editItemRequestStatus: TRequestStatus
+  deleteItemRequestStatus: TRequestStatus
 }
 
 const INITIAL_STATE: RulesState = {
   items: [],
   addItemRequestStatus: RequestStatus.Idle,
   editItemRequestStatus: RequestStatus.Idle,
+  deleteItemRequestStatus: RequestStatus.Idle,
 }
 
 // Side Effects / thunks
@@ -66,6 +68,17 @@ export const editItem = createAsyncThunk(
   },
 )
 
+export const deleteItem = createAsyncThunk(
+  'rules/deleteItem',
+  async (itemId: number, { dispatch }) => {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/shop/items/${itemId}`, {
+      method: 'DELETE',
+    })
+
+    dispatch(itemDeleted(itemId))
+  },
+)
+
 const rules = createSlice({
   name: 'rule',
   initialState: INITIAL_STATE,
@@ -83,11 +96,17 @@ const rules = createSlice({
         state.items[index] = action.payload
       }
     },
+    itemDeleted: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter(item => item.id !== action.payload)
+    },
     setAddItemRequestStatus: (state, action: PayloadAction<TRequestStatus>) => {
       state.addItemRequestStatus = action.payload
     },
     setEditItemRequestStatus: (state, action: PayloadAction<TRequestStatus>) => {
       state.editItemRequestStatus = action.payload
+    },
+    setDeleteItemRequestStatus: (state, action: PayloadAction<TRequestStatus>) => {
+      state.deleteItemRequestStatus = action.payload
     },
   },
 })
@@ -98,6 +117,7 @@ const {
   setEditItemRequestStatus,
   itemReceived,
   itemUpdated,
+  itemDeleted,
 } = rules.actions
 
 export {
