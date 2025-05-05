@@ -1,16 +1,15 @@
+import { RootState } from '@/store'
+import { useSelector } from 'react-redux'
 import { Section } from './Section'
-import { OwnedItems } from '@/types'
 
-type Props = {
-  skills: OwnedItems
-}
+export const Skills = () => {
+  const skills = useSelector((state: RootState) => state.game.skills)
 
-export const Skills = ({ skills }: Props) => {
   return (
     <>
-      {Object.keys(skills).map((name, key) => (
+      {Object.keys(skills).map(name => (
         <Section
-          key={key}
+          key={name}
           itemName={name}
           number={skills[name]}
         />
