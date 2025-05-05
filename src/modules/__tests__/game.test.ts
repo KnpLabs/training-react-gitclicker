@@ -1,4 +1,4 @@
-import game, { buyItem, click, loop } from '../game'
+import gameReducer, { buyItem, click, loop } from '../game'
 
 describe('game reducer', () => {
   it('should handle loop action', () => {
@@ -16,7 +16,7 @@ describe('game reducer', () => {
       skills: {},
     }
 
-    expect(game(state, action)).toEqual(expectedState)
+    expect(gameReducer(state, action)).toEqual(expectedState)
   })
 
   it('should handle click action', () => {
@@ -34,7 +34,7 @@ describe('game reducer', () => {
       skills: {},
     }
 
-    expect(game(state, action)).toEqual(expectedState)
+    expect(gameReducer(state, action)).toEqual(expectedState)
   })
 
   it('should handle buyItem action, with no existing skills', () => {
@@ -61,7 +61,7 @@ describe('game reducer', () => {
       },
     }
 
-    expect(game(state, action)).toEqual(expectedState)
+    expect(gameReducer(state, action)).toEqual(expectedState)
   })
 
   it('should handle buyItem action, when the skill has already been bought', () => {
@@ -90,7 +90,7 @@ describe('game reducer', () => {
       },
     }
 
-    expect(game(state, action)).toEqual(expectedState)
+    expect(gameReducer(state, action)).toEqual(expectedState)
   })
 
   it('should handle buyItem action, when another skill has already been bought', () => {
@@ -123,7 +123,7 @@ describe('game reducer', () => {
       },
     }
 
-    expect(game(state, action)).toEqual(expectedState)
+    expect(gameReducer(state, action)).toEqual(expectedState)
   })
 
   it('should handle unknown action', () => {
@@ -135,6 +135,6 @@ describe('game reducer', () => {
 
     const action = { type: 'UNKNOWN ACTION' }
 
-    expect(game(state, action)).toEqual(state)
+    expect(gameReducer(state, action)).toEqual(state)
   })
 })
