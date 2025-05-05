@@ -6,6 +6,7 @@ import { Gitcoin } from './Gitcoin'
 import { Office } from './Office'
 import { Score } from './Score'
 import { Store } from './Store'
+import { Link } from 'react-router'
 
 export function Game() {
   const [lines, setLines] = useState(0)
@@ -48,22 +49,27 @@ export function Game() {
   }
 
   return (
-    <main className="game">
-      <section className="left">
-        <Score
-          lines={Math.ceil(lines)}
-          linesPerSecond={Math.ceil(linesPerMillisecond * 10)}
-        />
-        <Gitcoin onClick={handleClick} />
-      </section>
+    <>
+      <Link to="/">
+        Back to home
+      </Link>
+      <main className="game">
+        <section className="left">
+          <Score
+            lines={Math.ceil(lines)}
+            linesPerSecond={Math.ceil(linesPerMillisecond * 10)}
+          />
+          <Gitcoin onClick={handleClick} />
+        </section>
 
-      <section className="center">
-        <Office items={ownedItems} />
-      </section>
+        <section className="center">
+          <Office items={ownedItems} />
+        </section>
 
-      <section className="right">
-        <Store lines={lines} onBuy={handleBuy} />
-      </section>
-    </main>
+        <section className="right">
+          <Store lines={lines} onBuy={handleBuy} />
+        </section>
+      </main>
+    </>
   )
 }
